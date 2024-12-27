@@ -1,0 +1,10 @@
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES('Alice', '637.469.267-43', 6050.0, '1947-12-16', 1);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES('Bob', '772.541.751-40', 9110.0, '1945-08-25', 3);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES('Charlie', '958.092.638-24', 4840.0, '1940-11-15', 2);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES('Dave', '264.861.381-98', 2028.0, '1942-10-02', 1);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES('Eve', '941.367.203-17', 8385.0, '1957-12-13', 2);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES('Jona', '315.593.519-19', 1502.0, '1940-07-01', 4);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES('Mike', '376.874.147-98', 7910.0, '1959-08-26', 2);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES('Sofia', '808.687.077-20', 7938.0, '1954-05-17', 1);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES('Kevin', '722.049.698-68', 5488.0, '1941-09-24', 2);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES('Jonas', '710.667.427-52', 1206.0, '1938-01-16', 2);
