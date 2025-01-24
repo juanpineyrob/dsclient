@@ -3,7 +3,11 @@ package com.devsuperior.dsclient.services;
 import com.devsuperior.dsclient.dto.ClientDTO;
 import com.devsuperior.dsclient.entities.Client;
 import com.devsuperior.dsclient.repositories.ClientRepository;
+import com.devsuperior.dsclient.services.exceptions.DatabaseException;
+import com.devsuperior.dsclient.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,7 +22,7 @@ public class ClientService {
     @Transactional(readOnly = true)
     public ClientDTO findById(Long id) {
         Client result = clientRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Cliente no encontrado"));
+                () -> new ResourceNotFoundException("Cliente no encontrado"));
         return new ClientDTO(result);
     }
 
@@ -38,13 +42,25 @@ public class ClientService {
 
     @Transactional
     public ClientDTO update(ClientDTO dto, Long id) {
-        Client client = clientRepository.getReferenceById(id);
-        CopyDtoToEntity(dto, client);
-        return new ClientDTO(client);
+        try {
+
+            Client client = clientRepository.getReferenceById(id);
+            CopyDtoToEntity(dto, client);
+            return new ClientDTO(client);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Cliente no encontrado");
+        }
     }
 
     public void delete(Long id) {
-        clientRepository.deleteById(id);
+        if(!clientRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Cliente no encontrado");
+        }
+        try {
+            clientRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Falla en la integridad refernecial");
+        }
     }
 
     private void CopyDtoToEntity(ClientDTO dto, Client entity) {
