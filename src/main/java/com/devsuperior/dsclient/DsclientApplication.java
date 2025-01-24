@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class DsclientApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(DsclientApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(DsclientApplication.class, args);
+    }
 }

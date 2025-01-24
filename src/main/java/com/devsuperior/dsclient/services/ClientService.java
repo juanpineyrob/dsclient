@@ -43,7 +43,6 @@ public class ClientService {
     @Transactional
     public ClientDTO update(ClientDTO dto, Long id) {
         try {
-
             Client client = clientRepository.getReferenceById(id);
             CopyDtoToEntity(dto, client);
             return new ClientDTO(client);
@@ -53,7 +52,7 @@ public class ClientService {
     }
 
     public void delete(Long id) {
-        if(!clientRepository.existsById(id)) {
+        if (!clientRepository.existsById(id)) {
             throw new ResourceNotFoundException("Cliente no encontrado");
         }
         try {
